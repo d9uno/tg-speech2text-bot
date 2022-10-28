@@ -9,6 +9,13 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MessageHandler extends TelegramLongPollingBot {
     private final MediaConverter mediaConverter = new MediaConverter();
+    private VoskClient voskClient;
+    private String botToken;
+
+    public MessageHandler(String webSocketUri, String botToken) {
+        voskClient = new VoskClient(webSocketUri);
+        this.botToken = botToken;
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
