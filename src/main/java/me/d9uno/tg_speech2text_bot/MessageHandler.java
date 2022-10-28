@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -33,6 +34,10 @@ public class MessageHandler extends TelegramLongPollingBot {
                 downloadFile(filePathOnServer, Path.of("./data", receivedMessage.getChatId().toString(), filePathOnServer).toFile()),
             "wav", "pcm_s16le", 128000, 1, 16000);
             var recognizedText = voskClient.recognize(wavFile);
+
+            var sendMessage = new SendMessage(receivedMessage.getChatId().toString(), recognizedText);
+            sendMessage.setReplyToMessageId(receivedMessage.getMessageId());
+            execute(sendMessage);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
