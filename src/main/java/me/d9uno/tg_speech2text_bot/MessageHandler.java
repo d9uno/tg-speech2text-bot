@@ -7,6 +7,7 @@ public class MessageHandler extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        if (!update.hasMessage()) return;
     }
 
     @Override
