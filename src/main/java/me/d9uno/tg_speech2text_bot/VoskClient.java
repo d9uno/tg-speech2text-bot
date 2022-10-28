@@ -36,7 +36,6 @@ public class VoskClient {
             var fis = new FileInputStream(sourceFile);
             try (var dis = new DataInputStream(fis)) {
                 var buffer = new byte[8000];
-
                 while (true) {
                     int nbytes = dis.read(buffer);
                     if (nbytes < 0) break;
