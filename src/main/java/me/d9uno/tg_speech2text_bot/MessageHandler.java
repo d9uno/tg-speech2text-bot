@@ -39,12 +39,15 @@ public class MessageHandler extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return null;
+        var botUsername = new String();
+        try { botUsername = getMe().getUserName(); }
+        catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+
+        return botUsername;
     }
 
     @Override
-    public String getBotToken() {
-        return null;
-    }
-    
+    public String getBotToken() { return botToken; }
 }
