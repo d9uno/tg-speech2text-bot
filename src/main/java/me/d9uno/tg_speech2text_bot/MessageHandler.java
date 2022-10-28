@@ -32,6 +32,7 @@ public class MessageHandler extends TelegramLongPollingBot {
             var wavFile = mediaConverter.convertAudio(
                 downloadFile(filePathOnServer, Path.of("./data", receivedMessage.getChatId().toString(), filePathOnServer).toFile()),
             "wav", "pcm_s16le", 128000, 1, 16000);
+            var recognizedText = voskClient.recognize(wavFile);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
