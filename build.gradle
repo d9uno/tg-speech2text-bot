@@ -13,7 +13,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'me.d9uno.tg_speech2text_bot.App'
+    mainClass = 'me.d9uno.tg_speech2text_bot.Main'
 }
 
 tasks.named('test') {
